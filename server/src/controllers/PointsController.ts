@@ -2,6 +2,9 @@ import { Request, Response } from 'express';
 import knex from '../database/connection';
 
 class PointsController {
+  // ========================================
+  // INDEX: EXIBIR TODOS OS PONTOS DE COLETA
+  // ========================================
   async index(request: Request, response: Response) {
     // filtros de cidade, uf, items => Query Params
     const { city, uf, items } = request.query;
@@ -19,10 +22,20 @@ class PointsController {
       .where('uf', String(uf))
       .distinct()
       .select('points.*');
+    
+    // serialização de dados: transformar os dados para torná-los mais acessíveis, adequados
+    const serializedPoints = points.map(point => {
+      return {
+        ...point,
+        image_url: `http://192.168.2.102:3333/uploads/${point.image}`,
+      };
+    });
 
-    return response.json(points);
+    return response.json(serializedPoints);
   }
-
+  // ==================================================================
+  // SHOW: EXIBIR UM ÚNICO PONTO DE COLETA POR ID PASSADO POR PARÂMETRO
+  // ==================================================================
   async show(request: Request, response: Response) {
     const { id } = request.params;
 
@@ -31,6 +44,12 @@ class PointsController {
     if (!point) {
       return response.status(400).json({ message: 'Point not found.' });
     }
+
+    // serialização de dados: transformar os dados para torná-los mais acessíveis, adequados
+    const serializedPoint = {
+        ...point,
+        image_url: `http://192.168.2.102:3333/uploads/${point.image}`,
+    };
 
     /**
      * SELECT * FROM items
@@ -42,11 +61,12 @@ class PointsController {
       .where('point_items.point_id', id)
       .select('items.title');
 
-    return response.json({point, items });
+    return response.json({ point: serializedPoint, items });
   }
-
+  // =========================================
+  // CREATE: CADASTRAR UM NOVO PONTO DE COLETA
+  // =========================================
   async create(request: Request, response: Response) {
-
     // aqui é usada a desestruturação do JS
     // cada um é gual a ex.: const name = request.body.name
     const {
@@ -66,7 +86,7 @@ class PointsController {
     // aqui é usada short syntax, porque as variáveis são iguais aos nomes
     // cada um é igual a ex.: name: name
     const point = {
-      image: 'https://images.unsplash.com/photo-1556767576-5ec41e3239ea?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=60',
+      image: request.file.filename,
       name,
       email,
       whatsapp,
@@ -85,11 +105,14 @@ class PointsController {
     // mapeando o array de itens cadastrados no formulário para esse ponto de coleta
     // para cada item, retornar um objeto contendo esse próprio item (o id dele) e o id do ponto 
     // (pegado acima após fazer a inserção no bd)
-    const pointItems = items.map((item_id: number) => {
+    const pointItems = items
+      .split(',')
+      .map((item: string) => Number(item.trim()))
+      .map((item_id: number) => {
       return {
         item_id,
         point_id,
-      }
+      };
     });
 
     // com isso, inserir na tabela point_items cada registro contendo o relacionamento ponto x item

@@ -3,6 +3,7 @@ import cors from 'cors';
 import routes from './routes';
 // path é uma lib do node que serve para padronizar caminhos de arquivos
 import path from 'path';
+import { errors } from 'celebrate';
 
 // criando a aplicação
 const app = express();
@@ -15,6 +16,9 @@ app.use(routes);
 
 // diretório de uploads 
 app.use('/uploads', express.static(path.resolve(__dirname, '..', 'uploads')));
+
+// para retornar erros automaticamente ao frontend
+app.use(errors());
 
 app.listen(3333);
 
