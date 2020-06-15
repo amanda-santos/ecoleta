@@ -2,7 +2,7 @@
 > Descrição curta sobre o que seu projeto faz.
 
 <h1 align="center">
-    <img alt="Ecoleta" title="Ecoleta" src="/assets/ecoleta.png" width="220px" />
+    <img alt="Ecoleta" title="Ecoleta" src="/assets/Ecoleta.png" width="220px" />
 </h1>
 
 ## 🚀 Tecnologias
