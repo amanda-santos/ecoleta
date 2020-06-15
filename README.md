@@ -1,8 +1,5 @@
-# Ecoleta
-> Descrição curta sobre o que seu projeto faz.
-
 <h1 align="center">
-    <img alt="Ecoleta" title="Ecoleta" src="/assets/Ecoleta.png" width="220px" />
+    <img alt="Ecoleta" title="Ecoleta" src="/assets/Ecoleta.png" />
 </h1>
 
 ## 🚀 Tecnologias
@@ -18,10 +15,6 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 O Ecoleta é um marketplace que ajuda pessoas a encontrarem pontos de coleta de resíduos de forma eficiente.
 
-## 🔖 Layout
-
-Você pode visualizar o layout do projeto no formato através [desse link](https://www.figma.com/file/9TlOcj6l7D05fZhU12xWT3/Ecoleta-Booster?node-id=0%3A1). Lembrando que você irá precisar ter uma conta no [Figma](http://figma.com/).
-
 ## 🤔 Como contribuir
 
 1. Faça o _fork_ do projeto (<https://github.com/amanda-santos/ecoleta/fork>)
@@ -29,10 +22,3 @@ Você pode visualizar o layout do projeto no formato através [desse link](https
 3. Faça o _commit_ (`git commit -am 'Add some fooBar'`)
 4. _Push_ (`git push origin feature/fooBar`)
 5. Crie um novo _Pull Request_
-
-[npm-image]: https://img.shields.io/npm/v/datadog-metrics.svg?style=flat-square
-[npm-url]: https://npmjs.org/package/datadog-metrics
-[npm-downloads]: https://img.shields.io/npm/dm/datadog-metrics.svg?style=flat-square
-[travis-image]: https://img.shields.io/travis/dbader/node-datadog-metrics/master.svg?style=flat-square
-[travis-url]: https://travis-ci.org/dbader/node-datadog-metrics
-[wiki]: https://github.com/seunome/seuprojeto/wiki
