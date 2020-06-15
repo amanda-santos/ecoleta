@@ -1,6 +1,10 @@
 # Ecoleta
 > Descrição curta sobre o que seu projeto faz.
 
+<h1 align="center">
+    <img alt="Ecoleta" title="Ecoleta" src="ecoleta.png" width="220px" />
+</h1>
+
 ## 🚀 Tecnologias
 
 Esse projeto foi desenvolvido com as seguintes tecnologias:
